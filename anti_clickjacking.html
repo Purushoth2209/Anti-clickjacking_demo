@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anti-Clickjacking Demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .message {
+            margin-bottom: 20px;
+            font-size: 18px;
+            color: #333;
+            text-align: center;
+        }
+        iframe {
+            width: 80%;
+            height: 300px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="message">
+        If the anti-clickjacking headers are working, the content of the iframe below will be blocked.
+        <br>
+        This prevents hackers from embedding your site in a malicious way.
+    </div>
+    <iframe src="https://staging.d3qh0h2xiixybx.amplifyapp.com/chat"></iframe>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('https://staging.d3qh0h2xiixybx.amplifyapp.com/chat', {
+                method: 'GET',
+                mode: 'no-cors'
+            }).then(response => {
+                console.log('Attempted to fetch the URL to check headers.');
+            }).catch(error => {
+                console.error('Error fetching the URL:', error);
+            });
+        });
+    </script>
+</body>
+</html>
